@@ -54,7 +54,7 @@ public class UsuarioController {
         Optional<Usuario> u = usuarioService.findByLogin(usuario.getLogin());
 
         if(u.isEmpty()){
-            return ResponseEntity.status(HttpStatus.OK).body("Usuário não existe!");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuário não encontrado!");
         }
         
         if(u.isPresent() && usuarioService.verifyPassword(usuario.getSenha(), u.get())){
@@ -63,7 +63,7 @@ public class UsuarioController {
                 new UsuarioDTO(u.get().getId(), u.get().getLogin(), u.get().getNome() , u.get().getIsAdmin(), token));
         }
         
-        return ResponseEntity.status(HttpStatus.OK).body("Senha Incorreta!");
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Senha Incorreta!");
     }
 
     @PostMapping()

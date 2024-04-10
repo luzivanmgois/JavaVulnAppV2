@@ -23,6 +23,8 @@ public class MySecurityConfig {
                 .authorizeHttpRequests()
                 .requestMatchers(HttpMethod.POST, "/usuario/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/usuario").permitAll()
+                .requestMatchers(HttpMethod.POST, "/usuario/login").permitAll()
+                .requestMatchers(HttpMethod.POST, "/usuario/register").permitAll()
                 .requestMatchers(HttpMethod.GET, "/processo/**").permitAll()
                 .requestMatchers(HttpMethod.POST, "/arquivo/enviodocumento").permitAll()
                 .requestMatchers(HttpMethod.POST, "/enviodocumento").permitAll()

@@ -34,19 +34,12 @@ public class UsuarioController {
     public static final String USUARIONOTFOUND = "Usuário não encontrado!";
     final IUsuarioService usuarioService;
     final PasswordEncoder passwordEncoder;
- 
-  
-
-
 
 
     public UsuarioController(IUsuarioService usuarioService, PasswordEncoder passwordEncoder) {
         this.usuarioService = usuarioService;
         this.passwordEncoder = passwordEncoder;
-
     }
-
-
 
 
     @PostMapping("/login")
@@ -66,7 +59,7 @@ public class UsuarioController {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Senha Incorreta!");
     }
 
-    @PostMapping()
+    @PostMapping("/register")
     public ResponseEntity<Object> save(@RequestBody @Valid Usuario usuario){
         if(usuarioService.existsByLogin(usuario.getLogin())){
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Login indisponível");

@@ -32,7 +32,7 @@ public class ArquivoController {
     public ResponseEntity<Object> uploadEnvioDocumento(@RequestParam(name = "arquivo") MultipartFile arquivo, @RequestParam(name = "nome") String nome){
         Arquivo arq = arquivoService.saveEnvioDocumento(arquivo, nome);
         if(arq!=null){
-            return ResponseEntity.status(HttpStatus.CREATED).body(arq);
+            return ResponseEntity.status(HttpStatus.CREATED).body("Upload concluído!");
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Extensão inválida!");
     }

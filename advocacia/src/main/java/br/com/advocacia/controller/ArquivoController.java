@@ -26,12 +26,14 @@ public class ArquivoController {
         this.arquivoService = arquivoService;
     }
 
-
-
     @PostMapping("/enviodocumento")
     public ResponseEntity<Object> uploadEnvioDocumento(@RequestParam(name = "arquivo") MultipartFile arquivo, @RequestParam(name = "nome") String nome){
+        if (arquivoService.arquivoExiste(nome)) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Arquivo já existe!");
+        }
+
         Arquivo arq = arquivoService.saveEnvioDocumento(arquivo, nome);
-        if(arq!=null){
+        if(arq != null){
             return ResponseEntity.status(HttpStatus.CREATED).body("Upload concluído!");
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Extensão inválida!");

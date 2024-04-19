@@ -17,5 +17,7 @@ public interface IArquivoService {
     List<Arquivo> findAllModelo();
     //boolean validExtension(String extension);
     String lerArquivo(String nome);
+
+    boolean arquivoExiste(String nome);
 }
 

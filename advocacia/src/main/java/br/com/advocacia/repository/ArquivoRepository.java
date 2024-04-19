@@ -16,4 +16,6 @@ public interface ArquivoRepository extends JpaRepository<Arquivo, Long> {
     void deleteById(Long id);
     @Query("select a from Arquivo a where a.linkArquivo like CONCAT('%',?1,'%')")
     List<Arquivo> findAllModelo(String pathModelo);
+
+    Arquivo findByNome(String nome);
 }

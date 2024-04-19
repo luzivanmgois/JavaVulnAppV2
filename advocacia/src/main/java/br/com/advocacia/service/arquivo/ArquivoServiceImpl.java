@@ -141,5 +141,14 @@ public class ArquivoServiceImpl implements IArquivoService{
     }
 
     }
+
+    @Override
+    public boolean arquivoExiste(String nome) {
+        // Implemente a lógica para verificar se o arquivo existe no banco de dados
+        // Por exemplo, você pode buscar o arquivo pelo nome e verificar se o resultado é nulo
+        Arquivo arquivo = arquivoRepository.findByNome(nome);
+        return arquivo != null;
+    }
+
 }
 
